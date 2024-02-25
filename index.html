@@ -173,18 +173,55 @@
     </div>
 
     <script>
-        document.getElementById('commentForm').addEventListener('submit', function(event) {
+        document.getElementById('commentForm').addEventListener('submit', async function(event) {
             event.preventDefault();
 
             var name = document.getElementById('name').value;
             var comment = document.getElementById('comment').value;
 
-            var commentElement = document.createElement('div');
-            commentElement.innerHTML = '<strong>' + name + ':</strong> ' + comment;
+            try {
+                const response = await fetch('http://localhost:3000/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, comment })
+                });
 
-            document.getElementById('comments').appendChild(commentElement);
+                if (!response.ok) {
+                    throw new Error('Failed to add comment');
+                }
 
-            document.getElementById('commentForm').reset();
+                const newComment = await response.json();
+
+                var commentElement = document.createElement('div');
+                commentElement.innerHTML = '<strong>' + newComment.name + ':</strong> ' + newComment.comment;
+
+                document.getElementById('comments').appendChild(commentElement);
+
+                document.getElementById('commentForm').reset();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // JavaScript kod za dobavljanje komentara sa servera i prikazivanje na stranici
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('http://localhost:3000/comments');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch comments');
+                }
+                const comments = await response.json();
+                const commentsContainer = document.getElementById('comments');
+                comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.innerHTML = '<strong>' + comment.name + ':</strong> ' + comment.comment;
+                    commentsContainer.appendChild(commentElement);
+                });
+            } catch (error) {
+                console.error('Error:', error);
+            }
         });
     </script>
 </body>
