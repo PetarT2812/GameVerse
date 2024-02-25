@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O MENI I MOJIM IGRAMA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #fff;
+            font-size: 32px;
+        }
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            font-size: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .game {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        input[type="text"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #comments {
+            margin-top: 20px;
+        }
+        #comments > div {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #comments > div strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>O MENI I MOJIM IGRAMA</h1>
+    </header>
+    <div class="container">
+        <h2>O Meni</h2>
+        <p>
+            Dobrodošli na moj sajt! Ja sam Petar Tubić, dečak željan da postane programer koji pravi igrice koje su zabavne, kreativne i najvažnije od svega besplatne.
+            Ovde možete saznati više o meni i preuzeti neke od mojih igara (morate imati Python, instaliranu Pygame biblioteku i preporučio bih vam da ovo otvorite u Visual Studio Code).
+        </p>
+        
+        <h2>Moje igre</h2>
+        <div class="game">
+            <h3>Platformer</h3>
+            <p>Uzbuđenje i avantura čekaju u svetu platformera! Skoči, trči i istraži raznolike nivoe punih izazova i nepredvidljivih prepreka (Hvala code with russ-u na tutorialu).</p>
+            <img src="platformer.jpg" alt="Platformer">
+            <a href="/download/Prvi_platformer_u_python-u.zip" download>Download Game 1</a>
+        </div>
+
+        <div class="game">
+            <h3>Pygame, prvi projekat</h3>
+            <p>Projekat koji sam napravio dok sam učio pygame biblioteku. Poenta igre je da uništiš trola.</p>
+            <img src="pygame_project.jpg" alt="Pygame Project">
+            <a href="/download/Snake_game.zip" download>Download Game 2</a>
+        </div>
+
+        <div class="game">
+            <h3>Snake</h3>
+            <p>U Snake igri, svaki zalogaj hrane produžuje zmijinu dužinu, dok paziš da ne udariš u zidove ili svoj rep.</p>
+            <img src="snake.jpg" alt="Snake">
+            <a href="/download/Snake_game.zip" download>Download Game 3</a>
+        </div>
+
+        <div class="game">
+            <h3>Svemir</h3>
+            <p>Izbegavaj zvezde inače si u nevolji.</p>
+            <img src="space.jpg" alt="Space">
+            <a href="/download/Space.zip" download>Download Game 4</a>
+        </div>
+
+        <div class="game">
+            <h3>COMING SOON</h3>
+        </div>
+
+        <h2>Komentari</h2>
+        <!-- Forma za unos komentara -->
+        <form id="commentForm">
+            <label for="name">Ime:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="comment">Komentar:</label>
+            <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+            <button type="submit">Pošalji</button>
+        </form>
+
+        <!-- Prikaz komentara -->
+        <div id="comments">
+            <!-- Komentari će biti prikazani ovde -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var name = document.getElementById('name').value;
+            var comment = document.getElementById('comment').value;
+
+            var commentElement = document.createElement('div');
+            commentElement.innerHTML = '<strong>' + name + ':</strong> ' + comment;
+
+            document.getElementById('comments').appendChild(commentElement);
+
+            document.getElementById('commentForm').reset();
+        });
+    </script>
+</body>
+</html>
